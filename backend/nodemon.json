@@ -1,0 +1,7 @@
+{
+    "env":{
+        "MONGO_USER": "read_and_write",
+        "MONGO_PASSWORD":"aabbcc123",
+        "MONGO_DB": "test"
+    }
+}
