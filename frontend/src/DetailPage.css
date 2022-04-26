@@ -1,0 +1,248 @@
+.image_back{
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+}
+
+.con{
+    position: relative;
+}
+
+.image_front{
+    position: absolute;
+    height: 80%;
+    left: 5%;
+    top: 10%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.detail_title{
+    position: absolute;
+    left: 40%;
+    top: 10%;
+}
+
+.overview{
+    position: absolute;
+    left: 40%;
+    top: 75%;
+    right: 5%;
+}
+
+
+.detail_overview{
+    position: absolute;
+    left: 40%;
+    top: 80%;
+    right: 5%;
+    font-weight: normal;
+}
+
+
+.release_date{
+    position: absolute;
+    left: 40%;
+    top: 20%;
+    right: 5%;
+    font-weight: normal;
+}
+
+
+.ratings{
+    position: absolute;
+    left: 40%;
+    top: 25%;
+    right: 5%;
+    font-weight: normal;
+
+}
+
+.number_vote{
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    right: 5%;
+    font-weight: normal;
+}
+
+.cast1{
+    position: absolute;
+    width: 9%;
+    left: 40%;
+    top: 45%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.name1{
+    position: absolute;
+    left: 40%;
+    top: 68%;
+}
+
+
+.cast2{
+    position: absolute;
+    width: 9%;
+    left: 50%;
+    top: 45%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.name2{
+    position: absolute;
+    left: 50%;
+    top: 68%;
+}
+
+
+
+.cast3{
+    position: absolute;
+    width: 9%;
+    left: 60%;
+    top: 45%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.name3{
+    position: absolute;
+    left: 60%;
+    top: 68%;
+}
+
+.cast4{
+    position: absolute;
+    width: 9%;
+    left: 70%;
+    top: 45%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.name4{
+    position: absolute;
+    left: 70%;
+    top: 68%;
+}
+
+.cast5{
+    position: absolute;
+    width: 9%;
+    left: 80%;
+    top: 45%;
+    border-radius: 10px;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.1);
+}
+
+.name5{
+    position: absolute;
+    left: 80%;
+    top: 68%;
+}
+
+.cast{
+    position: absolute;
+    left: 40%;
+    top: 37%;
+}
+
+
+
+.button-4 {
+ position: absolute;
+ left: 75%;
+ top: 30%;
+ appearance: none;
+ background-color: #FAFBFC;
+ border: 1px solid rgba(27, 31, 35, 0.15);
+ border-radius: 6px;
+ box-shadow: rgba(27, 31, 35, 0.04) 0 1px 0, rgba(255, 255, 255, 0.25) 0 1px 0 inset;
+ box-sizing: border-box;
+ color: #24292E;
+ cursor: pointer;
+ font-family: -apple-system, system-ui, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+ font-size: 14px;
+ font-weight: 500;
+ line-height: 20px;
+ list-style: none;
+ padding: 6px 16px;
+ transition: background-color 0.2s cubic-bezier(0.3, 0, 0.5, 1);
+ user-select: none;
+ touch-action: manipulation;
+ vertical-align: middle;
+ white-space: nowrap;
+ word-wrap: break-word;
+
+}
+
+.button-4:hover {
+    background-color: #F3F4F6;
+    text-decoration: none;
+    transition-duration: 0.1s;
+}
+
+
+.button-4:active {
+    background-color: #EDEFF2;
+    box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+    transition: none 0s;
+}
+
+.button-4:focus {
+    outline: 1px transparent;
+}
+
+.button-4:before {
+    display: none;
+}
+
+
+
+
+                                                       /* CSS */
+.button-addwatchlist {
+   position: absolute;
+   left: 68%;
+   top: 30%;
+   background-color: transparent;
+   border: 2px solid #1A1A1A;
+   border-radius: 15px;
+   color: #3B3B3B;
+   cursor: pointer;
+   font-size: 18px;
+   font-weight: 600;
+   line-height: normal;
+   margin: 0;
+   min-height: 20px;
+   min-width: 0;
+   outline: none;
+   padding: 16px 24px;
+   text-align: center;
+   text-decoration: none;
+   transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+   user-select: none;
+   touch-action: manipulation;
+   width: 20%;
+   will-change: transform;
+}
+
+.button-addwatchlist:disabled {
+    pointer-events: none;
+}
+
+.button-addwatchlist:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.button-addwatchlist:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
