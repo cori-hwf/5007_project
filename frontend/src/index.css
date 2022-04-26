@@ -11,10 +11,10 @@ body{
   margin: 0;
 }
 
-.topButton{
+.NameButton{
+
   font-size: large;
   color: white;
-  font-family: Palatino;
   background-color: transparent;
   border: none;
   padding: 5px;
@@ -22,12 +22,28 @@ body{
   width: 10%;
   margin: 5px;
   cursor: pointer;
+  left: 5%
+}
+
+.NameButton:hover{
+  color: lightgray;
+}
+
+.topButton{
+  font-size: large;
+  color: white;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  width: 15%;
+  margin: 5px;
+  cursor: pointer;
 }
 
 .topSearch{
   font-size: large;
   color: black;
-  font-family: Palatino;
   padding: 5px;
   border-radius: 30px;
   width: 70%;

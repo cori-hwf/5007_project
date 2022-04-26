@@ -20,8 +20,7 @@ function DetailPage(props){
 
     }, [])
 
-
-
+    // 用 props.user_name 获取用户名称
 
         return (
 

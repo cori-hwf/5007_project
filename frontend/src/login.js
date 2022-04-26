@@ -14,7 +14,7 @@ async function graphQLFetch(query, variables = {}) {
       if (result.errors) {
         const error  = result.errors[0]
         alert(`${error.message}`);}
-      
+
       return result.data.createUser ? result.data : 'existing account';
     } catch (e) {
       if (!e.message){alert("You have an existing account, please log in.")}
@@ -43,13 +43,14 @@ class Login extends React.Component{
         token
         tokenExpiration
         }
-        }`;    
-        
+        }`;
+
         const data = await graphQLFetch(query);
         console.log(data)
         form.username.value = ""; form.password.value = "";
         if (data!="existing account"){alert("Account created");}
-
+        this.props.set_user(email.trim())
+        this.props.change_to_main()
     }
 
     render() {
