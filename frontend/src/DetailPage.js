@@ -15,7 +15,7 @@ function DetailPage(props){
     const [casts, setCasts] = useState([]);
     useEffect(() =>{
         fetch(movie_cast + props.move_info.id + cast_API_KEY).then(res => res.json()).then(data =>{
-            setCasts(data.cast);
+            setCasts(data.cast.filter(each => each.profile_path != null));
         });
 
     }, [])
@@ -46,17 +46,17 @@ function DetailPage(props){
 
 
                 <h2 className="cast">Casts</h2>
-
+                {casts.length > 0 && console.log(casts)}
                 {casts.length > 0 && <img src={IMG_API + casts[0].profile_path} className="cast1"/>}
                 {casts.length > 0 && <h4 className="name1"> {casts[0].name.split(' ').slice(-1)} </h4>}
-                {casts.length > 0 && <img src={IMG_API + casts[1].profile_path} className="cast2"/>}
-                {casts.length > 0 && <h4 className="name2"> {casts[1].name.split(' ').slice(-1)} </h4>}
-                {casts.length > 0 && <img src={IMG_API + casts[2].profile_path} className="cast3"/>}
-                {casts.length > 0 && <h4 className="name3"> {casts[2].name.split(' ').slice(-1)} </h4>}
-                {casts.length > 0 && <img src={IMG_API + casts[3].profile_path} className="cast4"/>}
-                {casts.length > 0 && <h4 className="name4"> {casts[3].name.split(' ').slice(-1)} </h4>}
-                {casts.length > 0 && <img src={IMG_API + casts[4].profile_path} className="cast5"/>}
-                {casts.length > 0 && <h4 className="name5"> {casts[4].name.split(' ').slice(-1)} </h4>}
+                {casts.length > 1 && <img src={IMG_API + casts[1].profile_path} className="cast2"/>}
+                {casts.length > 1 && <h4 className="name2"> {casts[1].name.split(' ').slice(-1)} </h4>}
+                {casts.length > 2 && <img src={IMG_API + casts[2].profile_path} className="cast3"/>}
+                {casts.length > 2 && <h4 className="name3"> {casts[2].name.split(' ').slice(-1)} </h4>}
+                {casts.length > 3 && <img src={IMG_API + casts[3].profile_path} className="cast4"/>}
+                {casts.length > 3 && <h4 className="name4"> {casts[3].name.split(' ').slice(-1)} </h4>}
+                {casts.length > 4 && <img src={IMG_API + casts[4].profile_path} className="cast5"/>}
+                {casts.length > 4 && <h4 className="name5"> {casts[4].name.split(' ').slice(-1)} </h4>}
             </div>
         )
 }

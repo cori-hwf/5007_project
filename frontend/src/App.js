@@ -6,6 +6,8 @@ import MovieSearch from "./MovieSearch";
 import CreateAccount from "./CreateAccount";
 import DetailPage from "./DetailPage";
 import WatchList from "./WatchList";
+import Movie_by_release_date from "./Movie_by_release_date";
+import Movie_by_popularity from "./Movie_by_popularity";
 
 class App extends React.Component{
   constructor() {
@@ -58,6 +60,10 @@ class App extends React.Component{
       return (<DetailPage move_info = {this.state.click_movie_info} user_name = {this.state.logged_in_user_name}/>)
     }else if(this.state.control_state == 'watch_list'){
       return (<WatchList user_name = {this.state.logged_in_user_name}/>)
+    }else if(this.state.control_state == 'by_release_date') {
+      return (<Movie_by_release_date jump={this.jump_to_detail_page}/>)
+    }else if(this.state.control_state == 'by_popularity'){
+      return (<Movie_by_popularity jump={this.jump_to_detail_page}/>)
     }
   }
 
@@ -80,6 +86,16 @@ class App extends React.Component{
             {this.state.logged_in_user_name != null && <button className="NameButton" type="button" onClick={() => {this.setState({control_state: 'watch_list'})}}>{this.state.logged_in_user_name}</button>}
             <button className="topButton" type="button" onClick={() =>{this.setState({control_state: 'main_page'})}}> Main Page </button>
             {this.state.logged_in_user_name == null && <button className="topButton" type="button" onClick={() =>{this.setState({control_state: 'log_in'})}}> Log in </button>}
+
+            <div className="dropdown">
+              <button className="dropbtn">Explore More
+              </button>
+              <div className="dropdown-content">
+                <a onClick={() => {this.setState({control_state: 'by_release_date'})}}>Latestest Released</a>
+                <a onClick={() => {this.setState({control_state: 'by_popularity'})}}>Popularity</a>
+              </div>
+            </div>
+
             {this.state.logged_in_user_name != null && <button className="topButton" type="button" onClick={() =>{this.setState({logged_in_user_name: null, control_state: 'main_page'})}}> Log Out </button>}
             {this.state.logged_in_user_name == null && <button className="topButton" type="button" onClick={() =>{this.setState({control_state: 'create_account'})}}> Create account </button>}
             <form name="searchMovies" onSubmit={this.handleSubmit}>
