@@ -7,8 +7,9 @@ const graphQlSchema = require('./graphql/schema/index');
 const resolvers = require('./graphql/resolvers/index')
 //const {buildSchema} = require('graphql');
 //const bcrypt = require('bcryptjs'); //to hash password for security sake
-
 //const User = require('./models/user');
+
+const isAuth = require('./middleware/is-auth');
 
 
 const app = express();
@@ -22,6 +23,8 @@ app.use((req,res,next) => { //resolve the CORS issue
     if (req.method === 'OPTIONS'){return res.sendStatus(200);}
     next(); //if it's not options -> continue to next
 })
+
+app.use(isAuth);//add in isAuth property to the metadata
 
 app.use('/graphql',
      graphqlHttp({

@@ -1,26 +1,5 @@
 import React from "react";
-
-async function graphQLFetch(query, variables = {}) {
-    try {
-      const response = await fetch('http://localhost:8081/graphql', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json'},
-        body: JSON.stringify({ query, variables })
-      });
-      const body = await response.text();
-      const result = JSON.parse(body);
-      console.log(`body is ${body}`)
-
-      if (result.errors) {
-        const error  = result.errors[0]
-        alert(`${error.message}`);}
-      
-      return result.data.createUser ? result.data : 'existing account';
-    } catch (e) {
-      if (!e.message){alert("You have an existing account, please log in.")}
-      else alert(`Error in sending data to server: ${e.message}`);
-    }
-  }
+import {graphQLFetch} from "./helper/graphqlFetch.js";
 
 class Login extends React.Component{
     constructor() {
@@ -43,12 +22,15 @@ class Login extends React.Component{
         token
         tokenExpiration
         }
-        }`;    
-        
+        }`;
+
         const data = await graphQLFetch(query);
-        console.log(data)
+        if (data){
+            this.props.set_user(email.trim())
+            this.props.change_to_main()
+        }
+        else {alert("Please try to log in again")}
         form.username.value = ""; form.password.value = "";
-        if (data!="existing account"){alert("Account created");}
 
     }
 

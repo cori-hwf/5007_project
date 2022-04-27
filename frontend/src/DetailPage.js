@@ -12,6 +12,7 @@ const cast_API_KEY = "/credits?api_key=b04fbab9b2da3ad07f3c3f82bdd2c994"
 
 
 function DetailPage(props){
+    console.log(props.move_info)
     const [casts, setCasts] = useState([]);
     useEffect(() =>{
         fetch(movie_cast + props.move_info.id + cast_API_KEY).then(res => res.json()).then(data =>{
@@ -20,8 +21,7 @@ function DetailPage(props){
 
     }, [])
 
-
-
+    // 用 props.user_name 获取用户名称
 
         return (
 
