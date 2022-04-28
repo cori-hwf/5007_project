@@ -10,7 +10,7 @@ function MovieSearch(probs){
 
     useEffect(() =>{
         fetch(SEARCH_API + probs.searchStuff).then(res => res.json()).then(data =>{
-            setMovies(data.results);
+            setMovies(data.results.filter(each => each.poster_path != null && each.backdrop_path != null));
         });
     }, [])
 

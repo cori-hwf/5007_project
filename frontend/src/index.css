@@ -1,13 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,700;1,400&display=swap");
+
 *{
   box-sizing: border-box;
   alignment: center;
+  font-family: "Montserrat", sans-serif;
 }
 
 
 body{
   background-color: white;
   color: black;
-  font-family: Palatino;
   margin: 0;
 }
 
@@ -26,7 +28,7 @@ body{
 }
 
 .NameButton:hover{
-  color: lightgray;
+  color: gold;
 }
 
 .topButton{
@@ -52,7 +54,7 @@ body{
 }
 
 .topButton:hover{
-  color: lightgray;
+  color: gold;
 }
 
 
@@ -121,5 +123,51 @@ header {
 
 .movie:hover .movie-over{
   transform: translateY(0%);
+}
 
+
+
+
+
+
+.dropdown .dropbtn {
+  font-size: large;
+  color: white;
+  background-color: transparent;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  color: gold;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 120px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }

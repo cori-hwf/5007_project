@@ -9,7 +9,13 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true
+    },
+    savedmovie: [
+    {
+        type: Schema.Types.ObjectId,
+        ref: 'Movie'
     }
+    ]
 
 }) ;
 
