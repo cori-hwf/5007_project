@@ -1,14 +1,25 @@
 import React from "react";
+import Movie_small from "./Movie_small";
 
 class WatchList extends React.Component{
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        //console.log(this.props.watch_list)
     }
 
     render() {
+        console.log("in here")
+        console.log(this.props)
+       
         return (
             // {this.props.user_name}
-            <h1>watch list</h1>
+            // this.props.watch_list
+            <>
+                <h1 align="center">My watch list</h1>
+                <div className="movie-container">
+                    {this.state.movies.length > 0 && this.state.movies.map((movie) => <Movie_small key={movie.id} {...movie}/>)}
+                </div>
+            </>
         );
     }
 

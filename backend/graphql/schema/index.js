@@ -24,6 +24,8 @@ type Movie{
     popularity: Float
     poster_path: String
     release_date: String
+    title: String
+    vote_average: Float
     vote_count: Float
     saver: [User!]
 }
