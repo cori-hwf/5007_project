@@ -8,6 +8,7 @@ import DetailPage from "./DetailPage";
 import WatchList from "./WatchList";
 import Movie_by_release_date from "./Movie_by_release_date";
 import Movie_by_popularity from "./Movie_by_popularity";
+import {graphQLFetch} from "./helper/graphqlFetch.js";
 
 class App extends React.Component{
   constructor() {
@@ -17,14 +18,15 @@ class App extends React.Component{
       searchStuff: "",
       click_movie_info: null,
       logged_in_user_name: null,
-      token: null
+      token: null,
+      user_watchlist: null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.jump_to_log_in = this.jump_to_log_in.bind(this);
     this.jump_to_create_account = this.jump_to_create_account.bind(this)
     this.jump_to_detail_page = this.jump_to_detail_page.bind(this)
     this.set_log_in_user = this.set_log_in_user.bind(this)
-    this.set_token = this.set_token.bind(this)  
+    this.set_token = this.set_token.bind(this)
     this.if_successful_log_in = this.if_successful_log_in.bind(this)
   }
 
@@ -53,6 +55,23 @@ class App extends React.Component{
     this.setState({control_state:'main_page'})
   }
 
+  async fetchMovie(){
+    const query = `query {
+        fetchmovie{
+        savedmovie{
+            movieid
+            poster_path
+            title
+            vote_average
+        }
+        }
+        }`;
+    const data = await graphQLFetch(query,this.props.token);
+    console.log(data.fetchmovie.savedmovie) //the data wanted
+    this.setState({user_watchlist: data.fetchmovie.savedmovie})
+  }
+
+
   control() {
     if (this.state.control_state == 'main_page') {
       return (<MovieFeed jump={this.jump_to_detail_page}/>)
@@ -65,7 +84,7 @@ class App extends React.Component{
     } else if(this.state.control_state == 'detail_page'){
       return (<DetailPage move_info = {this.state.click_movie_info} user_name = {this.state.logged_in_user_name} token={this.state.token}/>)
     }else if(this.state.control_state == 'watch_list'){
-      return (<WatchList user_name = {this.state.logged_in_user_name} token={this.state.token}/>)
+      return (<WatchList user_name = {this.state.logged_in_user_name} token={this.state.token} watch_list={this.state.user_watchlist}/>)
     }else if(this.state.control_state == 'by_release_date') {
       return (<Movie_by_release_date jump={this.jump_to_detail_page}/>)
     }else if(this.state.control_state == 'by_popularity'){
@@ -89,7 +108,7 @@ class App extends React.Component{
     return (
         <div>
           <header>
-            {this.state.logged_in_user_name != null && <button className="NameButton" type="button" onClick={() => {this.setState({control_state: 'watch_list'})}}>{this.state.logged_in_user_name}</button>}
+            {this.state.logged_in_user_name != null && <button className="NameButton" type="button" onClick={() => {this.setState({control_state: 'watch_list'}); this.fetchMovie()} }>{this.state.logged_in_user_name}</button>}
             <button className="topButton" type="button" onClick={() =>{this.setState({control_state: 'main_page'})}}> Main Page </button>
             {this.state.logged_in_user_name == null && <button className="topButton" type="button" onClick={() =>{this.setState({control_state: 'log_in'})}}> Log in </button>}
 
