@@ -26,9 +26,10 @@ class Login extends React.Component{
 
         const data = await graphQLFetch(query);
         if (data){
-            console.log(data)
+            console.log(data.login.tokenExpiration)
             this.props.set_user(email.trim())
             this.props.set_token(data.login.token)
+            this.props.handle_expiration(data.login.tokenExpiration *3600000)
             this.props.change_to_main()
         }
         else {alert("Please try to log in again")}

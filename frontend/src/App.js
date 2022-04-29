@@ -17,7 +17,8 @@ class App extends React.Component{
       searchStuff: "",
       click_movie_info: null,
       logged_in_user_name: null,
-      token: null
+      token: null,
+      timer: null
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.jump_to_log_in = this.jump_to_log_in.bind(this);
@@ -25,6 +26,8 @@ class App extends React.Component{
     this.jump_to_detail_page = this.jump_to_detail_page.bind(this)
     this.set_log_in_user = this.set_log_in_user.bind(this)
     this.set_token = this.set_token.bind(this)  
+    this.set_log_out = this.set_log_out.bind(this)
+    this.auto_log_out = this.auto_log_out.bind(this)
     this.if_successful_log_in = this.if_successful_log_in.bind(this)
   }
 
@@ -45,6 +48,17 @@ class App extends React.Component{
     this.setState({token: token})
   }
 
+  set_log_out(event,message = null){
+    if (message!==null){alert(message);}
+    else {clearTimeout(this.state.timer);}
+    this.setState({logged_in_user_name: null, token:null, control_state: 'main_page',timer:null})
+  }
+
+  auto_log_out(expiration){
+    const timerId = setTimeout(()=>{this.set_log_out("","Your login has expired, please login again.")},expiration);
+    this.setState({timer:timerId})
+  }
+
   jump_to_detail_page(move_info){
     this.setState({control_state:'detail_page', click_movie_info : move_info})
   }
@@ -57,7 +71,7 @@ class App extends React.Component{
     if (this.state.control_state == 'main_page') {
       return (<MovieFeed jump={this.jump_to_detail_page}/>)
     } else if (this.state.control_state == 'log_in') {
-      return (<Login jump={this.jump_to_create_account} set_user = {this.set_log_in_user} set_token = {this.set_token} change_to_main = {this.if_successful_log_in}/>)
+      return (<Login jump={this.jump_to_create_account} set_user = {this.set_log_in_user} set_token = {this.set_token} handle_expiration = {this.auto_log_out} change_to_main = {this.if_successful_log_in}/>)
     } else if (this.state.control_state == 'search') {
       return (<MovieSearch {...{searchStuff: this.state.searchStuff, jump: this.jump_to_detail_page}}/>)
     } else if(this.state.control_state == 'create_account'){
@@ -102,7 +116,7 @@ class App extends React.Component{
               </div>
             </div>
 
-            {this.state.logged_in_user_name != null && <button className="topButton" type="button" onClick={() =>{this.setState({logged_in_user_name: null, control_state: 'main_page'})}}> Log Out </button>}
+            {this.state.logged_in_user_name != null && <button className="topButton" type="button" onClick={this.set_log_out}> Log Out </button>}
             {this.state.logged_in_user_name == null && <button className="topButton" type="button" onClick={() =>{this.setState({control_state: 'create_account'})}}> Create account </button>}
             <form name="searchMovies" onSubmit={this.handleSubmit}>
               <input className="topSearch" type="text" name="search" placeholder="Search..." />
