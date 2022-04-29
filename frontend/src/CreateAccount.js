@@ -1,21 +1,46 @@
 import React from "react";
 import {graphQLFetch} from "./helper/graphqlFetch.js";
+const emailValidator = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const passwordValidator = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 
 class CreateAccount extends React.Component{
     constructor() {
         super();
         this.handleSubmit = this.handleSubmit.bind(this);
+
     }
+
+    validateEmailAddress(email) {
+        let emailAddressError = "";
+        if (email.trim === "") emailAddressError = "Email Address is required";
+        else if (!emailValidator.test(email))
+          emailAddressError = "Email is not valid";
+        return emailAddressError ;
+      }
+    
+      validatePassword(password) {
+        let passwordError = "";
+        if (password.trim === "") passwordError = "Password is required";
+        else if (!passwordValidator.test(password))
+          passwordError =
+            "Password must contain at least 8 characters, 1 number, 1 upper and 1 lowercase!";
+        return passwordError;
+      }
 
     async handleSubmit(e){
         e.preventDefault();
         const form = document.forms.createAcc;
         const email = form.username.value;
         const password = form.password.value;
-        if (email.trim().length === 0 || password.trim().length === 0){
-            alert("Email address and Password fields are compulsary.")
-            return;
-        }
+        //if (email.trim().length === 0 || password.trim().length === 0){
+        //    alert("Email address and Password fields are compulsary.")
+        //    return;
+        //}
+        const emailError = this.validateEmailAddress(email)
+        if (emailError) {alert(emailError); return}
+        const passwordError = this.validatePassword(password);
+        if (passwordError) {alert(passwordError); return}
+        
         const query = `mutation {
         createUser(userInput: {email: "${email}", password: "${password}"})  {
         _id
@@ -24,8 +49,11 @@ class CreateAccount extends React.Component{
         }`;    
         
         const data = await graphQLFetch(query);
-        if (data){alert("Account created");}
-        console.log(data)
+        if (data){
+            alert("Account created. Please log in by filling in below.");
+            this.props.jump()
+        }
+        //console.log(data)
         form.username.value = ""; form.password.value = "";
     }
 

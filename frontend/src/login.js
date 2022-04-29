@@ -30,6 +30,7 @@ class Login extends React.Component{
             this.props.set_user(email.trim())
             this.props.set_token(data.login.token)
             this.props.handle_expiration(data.login.tokenExpiration *3600000)
+            alert("Log in successfully.")
             this.props.change_to_main()
         }
         else {alert("Please try to log in again")}

@@ -14,7 +14,7 @@ const cast_API_KEY = "/credits?api_key=b04fbab9b2da3ad07f3c3f82bdd2c994"
 
 function DetailPage(props){
     //console.log("detail page")
-    console.log(props.move_info)
+    //console.log(props.move_info)
     const [casts, setCasts] = useState([]);
     useEffect(() =>{
         fetch(movie_cast + props.move_info.id + cast_API_KEY).then(res => res.json()).then(data =>{
@@ -38,7 +38,8 @@ function DetailPage(props){
             }
             }`;   
         const data = await graphQLFetch(query,props.token);
-        console.log(data)
+        if (data.saveMovie){alert("The movie has been added to the watchlist.");}
+        //console.log(data)
     }
 
         return (

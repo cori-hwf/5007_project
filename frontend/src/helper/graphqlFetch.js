@@ -1,8 +1,8 @@
 export
     async function graphQLFetch(query, variables = {}) {
     try {
-      console.log("log variables")
-      console.log('Bearer' + variables)
+//      console.log("log variables")
+//      console.log('Bearer' + variables)
         const response = await fetch('http://localhost:8081/graphql', {
           method: 'POST',
           headers: { 

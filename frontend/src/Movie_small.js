@@ -1,13 +1,29 @@
 import React from "react";
+import {graphQLFetch} from "./helper/graphqlFetch.js";
 const IMG_API = "https://image.tmdb.org/t/p/w500";
 
 
 class Movie_small extends React.Component{
     constructor() {
         super();
-
     }
 
+    async unsavemovie(id){
+        const query = `mutation {
+        unsaveMovie(objectid: "${id}") {
+        savedmovie{
+            _id
+            movieid
+            poster_path
+            title
+            vote_average
+        }
+        }
+        }`;    
+        
+        const data = await graphQLFetch(query,this.props.token);
+        this.props.updateWatchList(data.unsaveMovie.savedmovie)
+    }
 
     render(){
         return (
@@ -22,7 +38,7 @@ class Movie_small extends React.Component{
                 </div>
 
                 <div className="movie-over" align="center">
-                    <button className="remove-bu">
+                    <button onClick={()=>{this.unsavemovie(this.props._id)}} className="remove-bu">
                         <i className="fa fa-trash-o fa-lg"></i> Delete
                     </button>
                 </div>
