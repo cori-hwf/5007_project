@@ -28,6 +28,7 @@ class App extends React.Component{
     this.set_log_in_user = this.set_log_in_user.bind(this)
     this.set_token = this.set_token.bind(this)
     this.if_successful_log_in = this.if_successful_log_in.bind(this)
+    this.fetchMovie = this.fetchMovie.bind(this)
   }
 
   jump_to_log_in(){
