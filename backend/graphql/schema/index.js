@@ -58,6 +58,7 @@ type RootQuery{
 type RootMutation{
     createUser(userInput: UserInput):User
     saveMovie(movieInput: MovieInput):Movie
+    unsaveMovie(objectid: String): User
 
 }
 

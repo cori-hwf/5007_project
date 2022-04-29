@@ -74,6 +74,7 @@ class App extends React.Component{
     const query = `query {
         fetchmovie{
         savedmovie{
+            _id
             movieid
             poster_path
             title

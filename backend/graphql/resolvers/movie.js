@@ -53,7 +53,23 @@ module.exports= {
             if (!user) {throw new Error('User not found.');} 
             return {...user._doc,  _id: user._doc._id.toString()};
         }
+        catch(e){throw e;}
+    },
 
+
+    unsaveMovie: async(args,req) => {
+        if (!req.isAuth) {throw new Error('Unauthenticated!')};
+        try{
+            const user = await User.findById(req.userId).populate('savedmovie');
+            if (!user) {throw new Error('User not found.');} 
+            const movie = await Movie.findById(args.objectid).populate('saver');
+            if (!movie) {throw new Error('Movie not found.');}
+            user.savedmovie.pull(args.objectid);
+            movie.saver.pull(req.userId);
+            user.save();
+            movie.save();
+            return {...user._doc,  _id: user._doc._id.toString()};
+        }
         catch(e){throw e;}
     }
 }
