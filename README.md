@@ -1,5 +1,6 @@
 # 5007_project
 To start frontend: go to frontend folder -> npm start
+
 To start backend:
 1．set up database:  we used mongodb atlas(the cloud version of mongodb); The connection can be found in backend -> app.js 
 The current setup will be connected to personal mongodb cluster and we have set the access right to public. Hence, there shall be no need for the TA to set up database but use the current set up directly. 
